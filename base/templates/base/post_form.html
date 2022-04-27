@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block content  %}
+<style>
+    .container{
+        background-color: #27262c;
+        padding-top: 75px;
+        margin-right: -81px;
+        margin-left: -25px;
+        padding-bottom: 50px;
+        text-align: center;
+        color: white;
+        align: center;
+    }
+</style> 
+<center><div class="container">
+    <form method = "POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" class="btn btn-primary btn-sm" value="Submit" />
+
+    </form>
+</div></center>
+
+
+{% endblock content %}

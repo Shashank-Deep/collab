@@ -1,0 +1,57 @@
+<style>
+  .header {
+    background-color: #1a191f;
+    display: flex;
+    align-items: center;
+    
+  }
+
+  a {
+    text-decoration: none;
+  }
+  .login {
+    margin-left: 1040px;
+    padding: 20px 18px;
+    
+  }
+
+ 
+  h1 {
+    color: white;
+    padding-left: 100px;
+  }
+  
+  h3 , h2 {
+    color: white;
+  
+  }
+  .btn-sm {
+    padding: 0.25rem 4.333rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem ;
+    background-color: #F6836B;
+    border-color: #1a191f;
+  }
+</style>
+
+<div class="header">
+  <a href="/">
+    <h1>Collab</h1>
+  </a>
+
+  <div class="login">
+    
+    <form method="GET" action="{% url 'home' %}">
+      <input class="login1" type="text" name="q" placeholder="Search" />
+    </form>
+
+    {% if request.user.is_authenticated %}
+    <h2>Hello {{request.user}}</h2>
+    <a href="{% url 'logoutpage' %}" class="btn btn-primary btn-sm">Logout</a>
+
+    {% else %}
+
+    <a href="{% url 'loginpage' %}" class="btn btn-primary btn-sm">Login</a>
+    {% endif %}
+  </div>
+</div>

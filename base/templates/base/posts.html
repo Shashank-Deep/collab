@@ -1,0 +1,55 @@
+<style>
+
+
+  .comment-wrapper {
+    background-color: #27262c;
+    padding-top: 53px;
+    margin-right: -262px;
+    margin-left: -181px;
+    padding-bottom: 26px;
+    text-align: center;
+    color: white;
+   
+  }
+  p {
+    margin-left: 145;
+    margin-bottom: 1rem;
+}
+</style>
+
+
+
+
+
+
+
+
+
+{% extends 'main.html' %} {% block content %}
+<center><div class="comment-wrapper">
+<h1>{{post.name}}</h1>
+
+<p>{{post.description}}</p>
+
+<div >
+  <h3>Interested Participants</h3>
+  <hr />
+
+  {% for message in postmessages %}
+  <div>
+    <small>@{{message.user}} {{message.created|timesince}} ago</small>
+    <p>{{message.body}}</p>
+    <hr />
+  </div>
+  {% endfor %}
+</div>
+
+{% if request.user.is_authenticated %}
+<div class="comment-form">
+  <form method="POST" action="">
+    {% csrf_token %}
+    <input type="text" name="body" placeholder="Participate................" />
+  </form>
+</div>
+<div class="comment-wrapper"></center>
+{% endif %} {% endblock content %}

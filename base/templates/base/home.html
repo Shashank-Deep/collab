@@ -1,0 +1,109 @@
+{% extends 'main.html' %} {% block content %}
+
+<style>
+      .home-container{
+          {% comment %} display: grid; {% endcomment %}
+          {% comment %} grid-template-columns: 1fr 3fr; {% endcomment %}
+          {% comment %} background-color= lightgreen; {% endcomment %}
+          font-family: "Montserrat"
+      }
+       h3 {
+         color:  #F6836B;
+       }
+
+      .browse {
+
+        background-color: #27262c;
+        padding-top: 10px;
+        margin-right: -110px;
+        margin-left: 403px;
+        padding-bottom: 50px;
+        text-align: center;
+        color: white;
+        align: center;
+
+    }
+
+  .Projects{
+
+      background-color: #27262c;
+      padding-top: 30px;
+      margin-right: -260px;
+       margin-left: 409px;
+      padding-bottom: 100px;
+      text-align: center;
+      color: white;
+      align: center;
+      margin-top: 50px;
+  }
+      .card{
+          border-radius: 20px;
+
+      }
+
+      .topics1{
+          color:white;
+      }
+
+      .col-lg-6 {
+        flex: 0 0 auto;
+        width: 70%;
+    }
+
+   #postname {
+       color: #F6836B;
+   }
+
+
+   .createpost{
+     color: white;
+   }
+</style>
+<div class="row">
+  <div class="home-container col-lg-6" style="width: 25ren">
+    <div class="browse card">
+      <h3>Browse Projects</h3>
+
+      <br />
+      <div>
+        <a class="topics1" href="{% url 'home'  %}?q={{topic.name}}">All</a>
+      </div>
+
+      {% for topic in topics %}
+      <div>
+        <a class="topics1" href="{% url 'home'  %}?q={{topic.name}}"
+          >{{topic.name}}
+        </a>
+      </div>
+
+      {% endfor %}
+    </div>
+
+    <div class="col-lg-6 Projects card">
+      <h5>{{post_count}} Projects Available to Collab</h5>
+      <a class="createpost" href="{% url 'createpost' %}">Create Post</a>
+      <hr />
+      <div>
+        {% for post in posts1 %}
+        <div>
+          {% if request.user == post.host %}
+          <a class="createpost" href="{% url 'updatepost' post.id  %}">Edit</a>
+          <a class="createpost" href="{% url 'deletepost' post.id  %}"
+            >Delete</a
+          >
+          {% endif %}
+
+          <div>@{{post.host.username}}</div>
+          <a id="postname" href="{% url 'posts' post.id %}">{{post.name}}</a>
+          <small>{{post.topic.name}}</small>
+          <hr />
+
+          <br />
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

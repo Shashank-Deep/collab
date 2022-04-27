@@ -1,0 +1,64 @@
+{% extends 'main.html' %} {% block content %} {% if page == 'loginpage' %}
+
+<style>
+  .container {
+    padding: 50px;
+    background-color: #27262c;
+    border-radius: 30px;
+  }
+
+  
+  c1 {
+    
+  }
+  input {
+    align: center;
+  }
+  .a {
+    color: white;
+  }
+
+  label {
+    color: #f6836b;
+  }
+
+</style>
+<center>
+  <div class="container">
+    <form method="POST" action="">
+      {% csrf_token %}
+      <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="Enter username" />
+      </div>
+      <br />
+      <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Enter password" />
+      </div>
+      <br />
+      <div>
+        <input type="submit" value="Login" class="btn btn-primary btn-sm" />
+      </div>
+    </form>
+    <br />
+    <p class="a">Haven't signed up yet?</p>
+    <a href="{% url 'registerpage' %}" class="btn btn-primary btn-sm"
+      >Sign Up</a
+    >
+  </div>
+
+  {% else %}
+  <div class = "c1" style="color:white;  padding= 50px; padding: 50px;
+  background-color: #27262c;
+  border-radius: 30px;">
+    <form method="POST" action="">
+      {% csrf_token %} {{form.as_p}}
+      <input class="btn btn-primary btn-sm" type="submit" value="Register" />
+    </form>
+    <p class="a">Already signed up?</p>
+    <a href="{% url 'loginpage' %}" class="btn btn-primary btn-sm">Sign In</a>
+  </div>
+</center>
+
+{% endif %} {% endblock content %}
